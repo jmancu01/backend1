@@ -1,4 +1,15 @@
-const { Observable, fromEvent, map } = rxjs;
+</pre>
+<html>
+
+<head>
+  <!-- Esto seria como el import de la libreria. La Url se obtiene de aca
+  https://www.npmjs.com/package/rxjs
+  -->
+  <script type="text/javascript" src="https://unpkg.com/rxjs@%5E7/dist/bundles/rxjs.umd.min.js"></script>
+
+  <!-- Este es el codigo que vamos a ejecutar -->
+  <script type="text/javascript">
+      const { Observable, fromEvent, map } = rxjs;
 
 function reverseString(str) {
     //se separa el string en letras. se da vuelta y se vuelve a juntar
@@ -33,12 +44,7 @@ window.onload = function () {
 
       //en caso que escriba cualquier cosa
       else {
-        //asignamos el miror a salida
-        salida = reverseString(output.value);
-        //sumamos el valor del evento a salida
-        salida += e.data;
-        //volvemos a dar vuelta el valor de salida para que nos tome el ultimo valor
-        salida = reverseString(salida)
+        
       }
       //next funciona como un return. los observables pueden devolver varios valores
       observable.next(salida)
@@ -72,9 +78,20 @@ window.onload = function () {
     error: miFuncionError,
     complete: miFuncionComplete,
   }
+  const filteredObs = miCustomObservable.pipe(
+
+    //asignamos el miror a salida
+    salida = reverseString(output.value),
+        //sumamos el valor del evento a salida
+    salida += e.data,
+        //volvemos a dar vuelta el valor de salida para que nos tome el ultimo valor
+    salida = reverseString(salida)
+  );
+
+
 
   //una vez que esta subscrito, el observable empieza a escuchar. Hasta que se llame a unsubscribe
-  const sub = miCustomObservable.subscribe(handler)
+  const sub = filtredObs.subscribe(char => console.log(char))
 
   //pasado los 30seg se llama a unsubscribe
   setTimeout(() => {
@@ -83,3 +100,14 @@ window.onload = function () {
   }, 30000)
 
 }
+  </script>
+</head>
+
+<body>
+  <input type="text" value="" id="entrada">
+  <br />
+  <input type="text" value="" id="salida">
+</body>
+
+</html>
+<pre>
