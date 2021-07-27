@@ -25,7 +25,7 @@ class Products {
        
     }
 
-    set(item) {
+    set = async(item) =>{
         //consigo la data parseada
         const data = this.get()
         //covierto el item en un objeto
@@ -42,8 +42,8 @@ class Products {
             //file written successfully
         })
     }
-    deleteLast(){
-        const data = this.get()
+    deleteLast = async() =>{
+        const data = await this.get()
        
         data.pop()
         
@@ -57,8 +57,8 @@ class Products {
             //file written successfully
         })
     }
-    deleteOne(name){
-        const data = this.get()
+    deleteOne = async(name) => {
+        const data = await this.get()
      
         const newData = data.filter( (item) => {
             return item.title !== name; 
@@ -84,8 +84,8 @@ const item = new Item ('parlante', '200', '4')
 const products = new Products('../practica7/products.txt')
 
 //metodos
-products.get()
-products.set(item)
-products.deleteOne('Escuadra')
-products.deleteLast()
 
+// products.set(item)
+// products.deleteOne('Escuadra')
+// products.deleteLast()
+// console.log(products.get())
