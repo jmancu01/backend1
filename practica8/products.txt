@@ -1,0 +1,1 @@
+[{"nombre":"Escuadra","price":123.45,"id":"1"},{"nombre":"Calculadora","price":234.56,"id":"2"},{"nombre":"Globo Terráqueo","price":345.67,"id":"3"},{"id":4915,"nombre":"silla","precio":100}]

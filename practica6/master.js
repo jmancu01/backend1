@@ -86,6 +86,6 @@ const products = new Products('../practica7/products.txt')
 //metodos
 
 // products.set(item)
-// products.deleteOne('Escuadra')
-// products.deleteLast()
-// console.log(products.get())
+// products.deleteOne('parlante')
+products.deleteLast()
+console.log(products.get())

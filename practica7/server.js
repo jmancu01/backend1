@@ -7,6 +7,11 @@ const port = 8080
 let visitas1 = 0;
 let visitas2 = 0;
 
+app.get('/', async(req, res) => {
+  res.send('Probar rutas /items, /item-random y /visitas')
+})
+
+
 //primer metodo
 app.get('/items', async(req, res) => {
     //sumo visita
