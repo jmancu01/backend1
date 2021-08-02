@@ -3,6 +3,7 @@ import  Products from './functions.js'
 const app = express()
 const port = 8080
 
+//ruta de bienvenida
 app.get('/', (req, res) =>{
     
     res.send(' Probar rutas /api/productos/lista, para poder ver la lista de productos \n' + 
@@ -10,6 +11,7 @@ app.get('/', (req, res) =>{
              ' /api/productos/guardar para guardar un producto en la lista')
 })
 
+//poder visualizar las listas disponibles
 app.get('/api/productos/lista', (req, res) =>{
     const products = new Products()
     const data = products.get()
@@ -20,6 +22,8 @@ app.get('/api/productos/lista', (req, res) =>{
         }
     )
 })
+
+//rastrear el producto indicado
 app.get('/api/productos/lista/id', (req, res) =>{
 
     const id = req.query.id
@@ -32,7 +36,9 @@ app.get('/api/productos/lista/id', (req, res) =>{
         }
     )
 })
-app.get('/api/productos/guardar', (req, res) =>{
+
+//guardar un producto
+app.post('/api/productos/guardar', (req, res) =>{
     
     const products = new Products(req.query.nombre, parseInt(req.query.precio))
     const data = products.guardar()
@@ -44,9 +50,35 @@ app.get('/api/productos/guardar', (req, res) =>{
     )
 })
 
+app.post('/api/productos/borrar', (req, res) =>{
+    
+    const products = new Products()
+    const data = products.borrar(parseInt(req.query.id))
+
+    res.json(
+        {
+            data
+        }
+    )
+})
+
+app.post('/api/productos/actualizar', (req, res) =>{
+    
+    const products = new Products()
+    const data = products.actualizar(parseInt(req.query.id), parseInt(req.query.precio), req.query.nombre)
+
+    res.json(
+        {
+            data
+        }
+    )
+})
+
+//escuchando en el puerto
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
+//console del error
 app.on('error', (err) => {
     console.log('ERROR =>', err);
 });

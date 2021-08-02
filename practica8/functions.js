@@ -41,11 +41,11 @@ export default class Products {
         }
         
     }
-    leer(){
-        return productos
-    }
+    //buscar por id
     buscar(id){
+        //conseguir la lista
         const products = this.get()
+        //buscar el product que coincida el valor de id con el buscado
         const element = products.find( (value, index) => {
             const correlation = (value.id === id)
             if(correlation){
@@ -54,6 +54,56 @@ export default class Products {
         })
         return element
     }
-}
 
+    actualizar(id, newPrecio, newNombre){
+        const products = this.get()
+        
+        if(typeof newNombre === 'string' && typeof newPrecio === 'number'){
+            if(this.buscar(id) === undefined){
+                console.log(`El producto con id: ${id} no existe en la lista`)
+            }else{
+            products.map((element)=>{
+
+                if(element.id === id){
+                    element.nombre = newNombre
+                    element.precio = newPrecio
+                }
+            })
+            const productsstr = JSON.stringify(products)
+            fs.writeFile('./products.txt', productsstr, err => {
+                if (err) {
+                console.error(err)
+                return
+                }
+                //file written successfully
+            })
+            return ('El producto fue modificado con exito')
+            }
+        }else{
+            return('No podemos modificar este producto, por favor revise la documentacion')
+        }
+    }
+
+    borrar(id){
+
+        let products = this.get()
+
+        if(this.buscar(id) === undefined){
+            console.log(`El producto con id: ${id} no existe en la lista`)
+        }else{
+        products = products.filter((element)=>{
+            return element.id !== id; 
+        })
+        const productsstr = JSON.stringify(products)
+        fs.writeFile('./products.txt', productsstr, err => {
+            if (err) {
+            console.error(err)
+            return
+            }
+            //file written successfully
+        })
+        return ('El producto fue borrado con exito')
+        }
+    }
+}
 
