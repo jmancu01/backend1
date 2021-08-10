@@ -50,7 +50,7 @@ app.post('/api/productos/guardar', (req, res) =>{
     )
 })
 
-app.post('/api/productos/borrar', (req, res) =>{
+app.delete('/api/productos/borrar', (req, res) =>{
     
     const products = new Products()
     const data = products.borrar(parseInt(req.query.id))
@@ -62,7 +62,7 @@ app.post('/api/productos/borrar', (req, res) =>{
     )
 })
 
-app.post('/api/productos/actualizar', (req, res) =>{
+app.put('/api/productos/actualizar', (req, res) =>{
     
     const products = new Products()
     const data = products.actualizar(parseInt(req.query.id), parseInt(req.query.precio), req.query.nombre)

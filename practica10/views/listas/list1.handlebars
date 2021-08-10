@@ -1,0 +1,11 @@
+{{#if listaProductos.length > 0}}
+
+<p>LISTA SUPER de {{nombre}} - {{apellido}}</p>
+<ul>
+  {{#each listaProductos }}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
+{{else}}
+<p>NO Hay productos disponibles</p>
+{{/if}}
