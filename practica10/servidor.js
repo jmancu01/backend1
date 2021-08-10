@@ -1,6 +1,8 @@
 import express from 'express'
 import path from 'path'
 import handlebars from 'express-handlebars'
+import Products from '../practica8/functions.js'
+
 const app = express()
 const port = 8080
 
@@ -11,19 +13,21 @@ const server = app.listen(port, ()=>
 const publicFolderPath = path.resolve('../public')
 app.use(express.static(publicFolderPath))
 
-const layoutFolderPath = path.resolve( '../practica10/views/layouts')
+const layoutFolderPath = path.resolve( '../practica10/views')
+const partialFolderPath = path.resolve( './views/listas')
 app.set('view engine', 'handlebars')
 app.engine('handlebars', handlebars({
     layoutsDir: layoutFolderPath,
-
+    partialsDir: partialFolderPath
 }))
 
 app.get('/', (req, res) => {
-
+    const products = new Products()
+    const arrayProductos = products.get()
     const datosDinamicos = {
         nombre: 'Juan',
         apellido: 'Mancuso',
-        listaProductos: ['camisa', 'pantalon', 'papel' ]
+        arrayProductos: arrayProductos
     }
 
     res.render('main', datosDinamicos)

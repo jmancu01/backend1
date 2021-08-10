@@ -1,11 +1,23 @@
-{{#if listaProductos.length > 0}}
-
-<p>LISTA SUPER de {{nombre}} - {{apellido}}</p>
-<ul>
-  {{#each listaProductos }}
-  <li>{{this}}</li>
-  {{/each}}
-</ul>
+{{#if this.arrayProductos.length}}
+    <p>LISTA SUPER de {{this.nombre}} - {{this.apellido}}</p>
+    <div style="display:flex">
+        <ul style="list-style-type: none;">
+        {{#each this.arrayProductos }}
+        <li style="border: 1px solid black;">{{this.id}}</li>
+        {{/each}}
+        </ul>
+        <ul style="list-style-type: none">
+        {{#each this.arrayProductos }}
+        <li style="border: 1px solid black;">{{this.nombre}}</li>
+        {{/each}}
+        </ul>
+        <ul style="list-style-type: none">
+        {{#each this.arrayProductos }}
+        <li style="border: 1px solid black;">{{this.precio}}</li>
+        {{/each}}
+        </ul>
+    </div>
+    
 {{else}}
-<p>NO Hay productos disponibles</p>
+    <p>NO Hay productos disponibles</p>
 {{/if}}
