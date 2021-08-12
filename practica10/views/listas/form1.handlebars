@@ -1,16 +1,17 @@
 
 <p>Formulario de {{this.nombre}} - {{this.apellido}}</p>
 <div style="display:flex">
-    <form action="/my-handling-form-page" method="post">
+    <form action="/guardar" method="get">
         <ul>
             <li>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="user_name" />
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" />
             </li>
             <li>
-                <label for="mail" >Precio:</label>
-                <input type="email" id="mail" name="user_email" />
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" name="precio" />
             </li>
+           <input type="submit" value="Submit">
         </ul>
     </form>
 </div>
