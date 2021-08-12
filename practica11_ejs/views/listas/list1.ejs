@@ -1,0 +1,29 @@
+<% if (arrayProductos.length) {%>
+    <p>LISTA SUPER de <% nombre %> - <% apellido %></p>
+    <div style="display:flex">
+        <label>ID</label>
+        <ul style="list-style-type: none;">
+        <% arrayProductos.forEach(element => { %>
+            <li style="border: 1px solid black;"><%= element.id %></li>
+        <% }) %>
+        
+        </ul>
+        <label>Nombre</label>
+        <ul style="list-style-type: none">
+            <% arrayProductos.forEach(element => { %>
+                <li style="border: 1px solid black;"><%= element.nombre %></li>
+            <% }) %>
+        </ul>
+        <label>Precio</label>
+        <ul style="list-style-type: none">
+            <% arrayProductos.forEach(element => { %>
+                <li style="border: 1px solid black;"><%= element.precio %></li>
+            <% }) %>
+        </ul>
+    </div>
+    
+<% } else { %>
+ 
+    <p>NO Hay productos disponibles</p>
+<% } %>
+ 
