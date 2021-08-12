@@ -1,7 +1,5 @@
 import fs from 'fs'
 
-
-
 //crear una clase que pueda leer, agregar y borrar productos
 export default class Products {
     
