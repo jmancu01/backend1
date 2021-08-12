@@ -24,11 +24,11 @@ app.get('/api/productos/lista', (req, res) =>{
 })
 
 //rastrear el producto indicado
-app.get('/api/productos/lista/id', (req, res) =>{
+app.get('/api/productos/lista', (req, res) =>{
 
     const id = req.query.id
     const products = new Products()
-    const data = products.buscar(id)
+    const data = products.buscar(parseInt(id))
     
     res.json(
         {
