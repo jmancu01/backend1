@@ -17,6 +17,9 @@ const viewsFolderPath = path.resolve( '../practica11_ejs/views')
 app.set('view engine', 'ejs')
 app.set('views', viewsFolderPath)
 
+app.use(express.json()); // Indica que el body viene como JSON
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
     const products = new Products()
     const arrayProductos = products.get()
@@ -29,15 +32,11 @@ app.get('/', (req, res) => {
 
     res.render('main', datosDinamicos)
 })
-app.get('/guardar', (req, res) =>{
+app.post('/guardar', (req, res) =>{
     
-    const products = new Products(req.query.nombre, parseInt(req.query.precio))
+    const products = new Products(req.body.nombre, parseInt(req.body.precio))
   
     const data = products.guardar()
 
-    res.json(
-        {
-            data
-        }
-    )
+    res.redirect('/')
 })

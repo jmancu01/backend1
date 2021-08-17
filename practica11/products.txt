@@ -1,1 +1,1 @@
-[{"nombre":"Globo Terráqueo","precio":345.67,"id":3},{"id":4915,"nombre":"silla","precio":100}]
+[{"nombre":"Globo Terráqueo","precio":345.67,"id":3},{"id":4915,"nombre":"silla","precio":100},{"id":5812,"nombre":"Juan Cruz","precio":231}]
