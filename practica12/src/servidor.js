@@ -39,17 +39,13 @@ app.get('/', (req, res) => {
   res.render('main', datosDinamicos);
 });
 
-app.get('/guardar', (req, res) =>{
+app.post('/guardar', (req, res) =>{
     
-  const products = new Products(req.query.nombre, parseInt(req.query.precio))
+  const products = new Products(req.body.nombre, parseInt(req.body.precio))
   console.log(products)
   const data = products.guardar()
 
-  res.json(
-      {
-          data
-      }
-  )
+  res.redirect('/')
 })
 
 //websocket
