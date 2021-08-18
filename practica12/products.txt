@@ -1,1 +1,1 @@
-[{"nombre":"Globo Terráqueo","precio":345.67,"id":3},{"id":4915,"nombre":"silla","precio":100}]
+[{"nombre":"Globo Terráqueo","precio":345.67,"id":3},{"id":4915,"nombre":"silla","precio":100},{"id":7783,"nombre":"mono","precio":21},{"id":2999,"nombre":"pero","precio":54},{"id":8201,"nombre":"Juan Cruz","precio":43},{"id":6487,"nombre":"mono","precio":43},{"id":226,"nombre":"carro","precio":32},{"id":5921,"nombre":"Juan Cruz","precio":432}]

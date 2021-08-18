@@ -4,8 +4,6 @@ import fs from 'fs'
 //crear una clase que pueda leer, agregar y borrar productos
 export default class Products {
     
-   
-
     constructor(nombre, precio) {
         this.id = Math.floor(Math.random() * 10000)
         this.nombre = nombre;
