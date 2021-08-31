@@ -1,17 +1,18 @@
 if arrayProductos.length
     //- p= 'LISTA SUPER de' nombre '-' apellido
-    div 
+    div(class='list-container')
         label ID 
         ul 
             each val in arrayProductos
                 li= val.id  
-        labelNombre
+        label Nombre
         ul
             each val in arrayProductos
                 li= val.nombre  
-        label= Precio
+        label Precio
         ul
             each val in arrayProductos
                 li= val.precio  
+    div( class='list-container' id='products')    
 else
     p No Hay productos disponibles

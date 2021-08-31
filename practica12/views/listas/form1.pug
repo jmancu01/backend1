@@ -1,7 +1,7 @@
 
 //- p= 'Formulario de' nombre - apellido
 div
-    form(action="/guardar" method="get")
+    form(action="/guardar" method="post")
         ul
             li
                 label(for="nombre")
@@ -13,5 +13,5 @@ div
                     ='Precio: '
                 input(type="number" id="precio" name="precio")
            
-            input(type="submit" value="Submit")
+            button(onclick="sendProducts(this)")="ENVIAR"
       

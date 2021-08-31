@@ -1,28 +1,40 @@
+
+
 const socket = io.connect('http://localhost:8080', { forceNew: true });
 
-// Cuando arrancamos pedimos la data que hay actualmente enviando un socket
-socket.emit('askData');
+//al apretar el boton se llama a la funcion sendData
+function sendProducts(e) {
+  //localiza el input con el valor ingresado
+  const nombre = document.getElementById('nombre');
+  //localiza el input con el valor ingresado
+  const precio = document.getElementById('precio');
 
-function sendData(e) {
-  const input = document.getElementById('pepe');
-  socket.emit('new-message', input.value);
+  const obj = { nombre: nombre.value, precio: precio.value}
+  //emite un socket con ese valor
+  socket.emit('new-product', obj);
 }
 
-function render(data) {
+
+function render1(data) {
   console.log(data);
   var html = data
     .map(function (elem, index) {
-      return `<div>
-                 <strong>Socket Id: ${elem.socketId} => </strong>:
-                 <em>${elem.message}</em>
-        </div>`;
+      return `<ul>
+            <li>${elem.id}</li>
+        </ul>
+        <ul>
+            <li>${elem.nombre}</li>
+        </ul>
+        <ul>
+          <li>${elem.precio}</li>
+        </ul>`
     })
     .join(' ');
 
-  document.getElementById('messages').innerHTML = html;
+  document.getElementById('products').innerHTML = html;
 }
 
-socket.on('messages', function (data) {
+socket.on('products', function (data) {
   console.log('RECIBI MENSAJE');
-  render(data);
+  render1(data);
 });

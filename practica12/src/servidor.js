@@ -19,6 +19,10 @@ app.set('view engine', 'pug');
 const viewsPath = path.resolve('../practica12/views');
 app.set('views', viewsPath);
 
+// Indica que el body viene como JSON
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+
 //creamos un server http para nuestro express
 const myServer = http.Server(app);
 
@@ -39,24 +43,20 @@ app.get('/', (req, res) => {
   res.render('main', datosDinamicos);
 });
 
-app.get('/guardar', (req, res) =>{
-    
-  const products = new Products(req.query.nombre, parseInt(req.query.precio))
-  console.log(products)
+app.post('/guardar', (req, res) =>{
+  
+  const products = new Products(req.body.nombre, parseInt(req.body.precio))
+  
   const data = products.guardar()
 
-  res.json(
-      {
-          data
-      }
-  )
+  res.redirect('/')
 })
 
 //websocket
 const myWSServer = io(myServer);
 
 const messages = [];
-
+const products = []
 //cuando se prende el server
 myWSServer.on('connection', function (socket) {
   //se llama a funcion nuevo mensaje
@@ -77,9 +77,23 @@ myWSServer.on('connection', function (socket) {
     //PARA ENVIARLE MENSAJE A TODOS MENOS AL QUE ME LO MANDO
     // socket.broadcast.emit('messages', messages);
   });
+  socket.on('new-product', function (data) {
+    const newProduct = new Products (data.nombre, data.precio)
+   
+    products.push(newProduct);
+
+    //PARA RESPONDERLE A UN SOLO CLIENTE
+    // socket.emit('messages', messages);
+
+    //PARA ENVIARLE EL MENSAJE A TODOS
+    myWSServer.emit('products', products);
+
+    //PARA ENVIARLE MENSAJE A TODOS MENOS AL QUE ME LO MANDO
+    // socket.broadcast.emit('messages', messages);
+  });
 
   socket.on('askData', (data) => {
-    console.log('ME LLEGO DATA');
-    socket.emit('messages', messages);
+    
+    socket.emit('products', products);
   });
 });
