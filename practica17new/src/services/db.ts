@@ -11,5 +11,9 @@ export const mySQLDB = knex({
     pool: { min: 0, max: 7 },
 });
   
-
+// export const sqliteDB = knex({
+//   client: 'sqlite3',
+//   connection: { filename: './midbligera.sqlite' },
+//   useNullAsDefault: true,
+// });
     
