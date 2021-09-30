@@ -7,20 +7,24 @@ app.use(cookieParser());
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    let { nombre, apellido, email } = req.query;
-    console.log(req.query); 
+router.post('/', (req, res) => {
+    let { nombre, apellido, email } = req.body.user;
     const tiempo = 6000;
 
     if (nombre && apellido && email) {
         res
             .cookie(nombre, apellido, { maxAge: parseInt(tiempo) })
             .send({ proceso: 'ok' });
-        return res.redirect("/")
     } else {
         res.send({ error: 'set-cookie: falta nombre ó valor' });
     }
 });
+
+app.get('/', (req, res) => {
+    console.log(req.cookies)
+    res.send(req.cookies)
+});
+
 
 
 export default router

@@ -1,7 +1,11 @@
+import { denormalize } from "normalizr";
+import { msge } from "../src/models/messages";
+
 const socket = io(); //llamo a sockets
 
 const formMensaje = document.getElementById('formMensajes');
-const mensajesContainer = document.getElementById('mensajesContainer'); //donde estan los mensajes
+const mensajesContainer = document.getElementById('mensajesContainer'); 
+const name = document.getElementById('name');//donde estan los mensajes
 
 let date = new Date();  
 let now = date.toLocaleString();
@@ -19,6 +23,9 @@ formMensaje.addEventListener('submit', (event) => { //evento submit
       },
       text: mensaje.value,
     };
+    let p = document.createElement('p');
+    p.innerHTML = `<span class='mx-2 mensaje__time'>${mensaje.author.nombre}</span>`
+    mensajesContainer.appendChild(p);
 
     socket.emit('newMessage', data);
     email.value = '';
@@ -30,12 +37,17 @@ formMensaje.addEventListener('submit', (event) => { //evento submit
 
 socket.on('receiveMessages', (mensajes) => {
   console.log(mensajes)
+  const denormalizeData = denormalize(
+    mensajes.result,
+    msge,
+    mensajes.result
+  )
+  console.log(denormalizeData)
+
   let p = document.createElement('p');
     for (const property in mensajes.entities.message) {
-      console.log(property)
       p.innerHTML = `
-      <span class='mx-2 mensaje__email'>${property}</span>
-      <span class='mx-2 mensaje__text'>${property.author}</span>`
+      <span class='mx-2 mensaje__email'>${property}</span>`
     }
     ;
   mensajesContainer.appendChild(p);

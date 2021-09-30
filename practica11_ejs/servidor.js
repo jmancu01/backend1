@@ -36,7 +36,7 @@ app.post('/guardar', (req, res) =>{
     
     const products = new Products(req.body.nombre, parseInt(req.body.precio))
   
-    const data = products.guardar()
+    const data = products.guardar()  
 
     res.redirect('/')
 })
