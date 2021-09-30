@@ -16,9 +16,6 @@ formMensaje.addEventListener('submit', (event) => { //evento submit
         email: email.value,
         nombre: nombre.value,
         apellido: apellido.value,
-        alias: alias.value,
-        edad: edad.value,
-        avatar: avatar.value,
       },
       text: mensaje.value,
     };
@@ -27,7 +24,6 @@ formMensaje.addEventListener('submit', (event) => { //evento submit
     email.value = '';
     nombre.value = '';
     apellido.value = '';
-    (alias.value = ''), (edad.value = ''), (avatar.value = '');
     mensaje.value = '';
   }
 });
